@@ -2,26 +2,88 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
+html,
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply bg-neutral-900 text-neutral-300 text-sm leading-6;
+}
+
+label, span,
+h1, h2, h3, h4, h5, h6,
+p, a {
+  text-shadow: 1px 1px 1px #000;
+}
+
+label, span,
+p, a {
+  @apply text-neutral-400;
+}
+
+h3 {
+  @apply text-xl mb-4;
+}
+
+/*?  FIELDS */
+label {
+  @apply relative inline-block my-1
+
+  after:absolute
+  after:content-[attr(data-tooltip)]
+  after:px-2 after:py-1
+
+  after:translate-y-1/2 after:-top-6
+  after:left-0
+  after:w-max after:max-w-xs
+
+  after:text-neutral-400
+  after:bg-neutral-700
+  after:border-neutral-600
+  after:border after:rounded-xl
+
+  after:opacity-0 after:hidden
+  hover:after:opacity-100 hover:after:block 
+  hover:cursor-pointer
+  transition-all
+  
+  after:z-10;
+}
+
+input,
+select,
+input.field,
+select.field  {
+  @apply px-2 py-1 w-full 
+  bg-neutral-900 rounded-xl shadow-md 
+  border border-neutral-700 
+  focus:border-neutral-500 focus:outline-none focus:ring-neutral-700 focus:ring-1 
+  focus:bg-transparent;
+}
+
+input:disabled {
+  @apply border-neutral-800;
+}
+
+/*? BUTTON */
+.clean {
+  @apply flex items-center gap-4
+  hover:text-neutral-500
+  disabled:text-neutral-600;
+}
+.primary {
+  @apply flex items-center gap-4 
+  px-4 py-1 
+  rounded-xl border border-neutral-500 
+  text-neutral-400
+  hover:border-neutral-600 hover:bg-neutral-300 hover:text-neutral-900
+  focus:border-neutral-700
+  disabled:text-neutral-600 disabled:border-neutral-600
+  shadow-sm shadow-neutral-950;
+}
+.secondary {
+  @apply flex items-center gap-4 
+  px-4 py-1 
+  rounded-xl border border-transparent 
+  text-neutral-400
+  hover:text-neutral-500
+  focus:border-transparent focus:bg-transparent
+  disabled:text-neutral-600;
 }
